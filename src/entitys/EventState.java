@@ -1,2 +1,4 @@
+package entitys;
+
 public enum EventState { REQUESTED, PLANNED, IN_EXECUTION, COMPLETED, CANCELLED
 }

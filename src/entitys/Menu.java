@@ -1,3 +1,5 @@
+package entitys;
+
 public class Menu {
     private static double basePricexPerson;
     private int idMenu;

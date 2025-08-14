@@ -1,4 +1,5 @@
-import java.*;
+package entitys;
+
 import java.util.List;
 
 public class Location {

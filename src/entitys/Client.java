@@ -1,3 +1,5 @@
+package entitys;
+
 public class Client {
     private String DNI;
     private String name;
