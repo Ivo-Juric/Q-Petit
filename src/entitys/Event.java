@@ -8,25 +8,25 @@ public class Event {
     private int idEvent;
     private LocalDate eventStartDate;
     private LocalDate eventEndDate;
-    private EventTypes eventTypes; // COMPLETAR
+    private EventType eventType; // COMPLETAR
     private int numberOfGuests;
     private Location location;
-    private Menu assignedMenu;
+    private List <Service> services;
     private List<Employee> employeesList = new ArrayList<>();
     private EventState eventState;
     private String servicePaper;
 
-    public Event(List<Employee> employeesList, String servicePaper, EventState eventState, Menu assignedMenu,
+    public Event(List<Employee> employeesList, String servicePaper, EventState eventState, List <Service> services ,
                  int idEvent, LocalDate eventStartDate, LocalDate eventEndDate,
-                 EventTypes eventTypes, int numberOfGuests, Location location) {
+                 EventType eventType, int numberOfGuests, Location location) {
         this.employeesList = employeesList;
         this.servicePaper = servicePaper;
         this.eventState = eventState;
-        this.assignedMenu = assignedMenu;
+        this.services = services;
         this.idEvent = idEvent;
         this.eventStartDate = eventStartDate;
         this.eventEndDate = eventEndDate;
-        this.eventTypes = eventTypes;
+        this.eventType = eventType;
         this.numberOfGuests = numberOfGuests;
         this.location = location;
     }

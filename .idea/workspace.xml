@@ -5,7 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e93c2b8b-0616-40e0-82de-0ce279d973c6" name="Changes" comment="-------">
-      <change beforePath="$PROJECT_DIR$/src/runner/Main.java" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/CentralController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/ClientAdministrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/ClientController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/EmployeeAdministrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/EmployeeController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/EventAdministrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/EventController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/LoginInterface.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/MenuAdministrator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/controllers/MoneyAdministration.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entitys/MoneyTransaction.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entitys/Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entitys/ServiceType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entitys/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entitys/EventTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/EventType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entitys/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Menu.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +32,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Interface" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -32,7 +51,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/Ivo-Juric/Q-Petit.git&quot;,
-    &quot;accountId&quot;: &quot;b2112a07-b692-49c5-9c69-266e57ef415f&quot;
+    &quot;accountId&quot;: &quot;d6d09aa1-fda3-4aac-aac7-88da6a115fab&quot;
   }
 }</component>
   <component name="ProjectColorInfo">{
@@ -46,7 +65,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "Application.Ivo-Juric.runner.Main.executor": "Run",
+    "Application.Ivo-Juric.runner.Main.executor": "Coverage",
     "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
@@ -55,7 +74,7 @@
     "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/User/IdeaProjects/Q-Petit",
+    "last_opened_file_path": "C:/Users/Ivo/IdeaProjects/Q-Petit",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -84,17 +103,6 @@
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
-    </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="Q-Petit" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="Q-Petit" />
-      <option name="filePath" />
-      <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
@@ -128,6 +136,8 @@
       <workItem from="1755196620394" duration="343000" />
       <workItem from="1755197376618" duration="2246000" />
       <workItem from="1755199654236" duration="403000" />
+      <workItem from="1755550075910" duration="1200000" />
+      <workItem from="1755551351472" duration="4025000" />
     </task>
     <task id="LOCAL-00001" summary="Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums">
       <option name="closed" value="true" />
@@ -172,15 +182,7 @@
     <MESSAGE value="-------" />
     <option name="LAST_COMMIT_MESSAGE" value="-------" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/runner/Main.java</url>
-          <line>11</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Q_Petit$Ivo_Juric_runner_Main.ic" NAME="Ivo-Juric.runner.Main Coverage Results" MODIFIED="1755550156123" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="true" />
   </component>
 </project>

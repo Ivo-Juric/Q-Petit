@@ -12,6 +12,7 @@ public class Menu {
     private boolean includeMainDish;
     private boolean includeDessert;
     private String observations;
+    private Service service;
 
     public Menu(int idMenu, String menuName, Category category, boolean isOwned, Supplier supplier, int minNumberDiners,
                 boolean includeEntree, boolean includeMainDish, boolean includeDessert, String observations) {
