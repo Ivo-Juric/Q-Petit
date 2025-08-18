@@ -7,7 +7,7 @@ public class User {
     private String username;
     private String password;
     private String email;
-    private boolean isLimited;
+    private Role role;
 
     public User(int userID, String firstName, String lastName, String username, String password, String email) {
         this.userID = userID;
@@ -16,5 +16,10 @@ public class User {
         this.username = username;
         this.password = password;
         this.email = email;
+        this.role = role;
+    }
+
+    public Role getRole(){
+        return role;
     }
 }
