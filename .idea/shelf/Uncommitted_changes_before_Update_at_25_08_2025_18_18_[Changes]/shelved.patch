@@ -1,0 +1,526 @@
+Index: src/views/MainForm.java
+===================================================================
+diff --git a/src/views/MainForm.java b/src/views/MainForm.java
+deleted file mode 100644
+--- a/src/views/MainForm.java	(revision 5341e5ac809037620bc996d5590245815ecadf41)
++++ /dev/null	(revision 5341e5ac809037620bc996d5590245815ecadf41)
+@@ -1,14 +0,0 @@
+-package views;
+-
+-import javax.swing.*;
+-
+-public class MainForm {
+-    private JPanel mainPanel;
+-    private JButton button1;
+-    private JTextField textField1;
+-
+-    public JPanel getMainPanel() {
+-        return mainPanel;
+-    }
+-
+-}
+\ No newline at end of file
+Index: src/entitys/Chef.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/entitys/Chef.java b/src/entitys/Chef.java
+new file mode 100644
+--- /dev/null	(date 1756155576714)
++++ b/src/entitys/Chef.java	(date 1756155576714)
+@@ -0,0 +1,5 @@
++package entitys;
++
++public class Chef {
++
++}
+Index: src/views/MainView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/views/MainView.java b/src/views/MainView.java
+new file mode 100644
+--- /dev/null	(date 1756156512610)
++++ b/src/views/MainView.java	(date 1756156512610)
+@@ -0,0 +1,25 @@
++package views;
++
++import javax.swing.*;
++
++// ---------- VISTA PRINCIPAL ----------
++public class MainView extends JFrame {
++    public MainView() {
++        setTitle("Sistema de Gestión de Eventos");
++        setSize(1000, 700);
++        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
++        setLocationRelativeTo(null);
++
++        // Contenedor de pestañas
++        JTabbedPane tabbedPane = new JTabbedPane();
++
++        tabbedPane.addTab("Menús", new MenuView());
++        tabbedPane.addTab("Staff", new StaffView());
++        tabbedPane.addTab("Chefs", new ChefView());
++        tabbedPane.addTab("Eventos", new EventView());
++        tabbedPane.addTab("Locaciones", new LocationView());
++        tabbedPane.addTab("Finanzas", new FinanceView());
++
++        add(tabbedPane);
++    }
++}
+\ No newline at end of file
+Index: src/views/MenuView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/views/MenuView.java b/src/views/MenuView.java
+new file mode 100644
+--- /dev/null	(date 1756156215225)
++++ b/src/views/MenuView.java	(date 1756156215225)
+@@ -0,0 +1,40 @@
++package views;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class MenuView extends JPanel {
++    private JTable table;
++    private JTextField txtNombre, txtPrecio, txtTipo;
++
++    public MenuView() {
++        setLayout(new BorderLayout());
++
++        // Panel de formulario
++        JPanel form = new JPanel(new GridLayout(4, 2, 5, 5));
++        form.add(new JLabel("Nombre del Menú:"));
++        txtNombre = new JTextField();
++        form.add(txtNombre);
++
++        form.add(new JLabel("Tipo (vegano, celiaco, etc.):"));
++        txtTipo = new JTextField();
++        form.add(txtTipo);
++
++        form.add(new JLabel("Precio base por persona:"));
++        txtPrecio = new JTextField();
++        form.add(txtPrecio);
++
++        JPanel buttons = new JPanel();
++        buttons.add(new JButton("Agregar"));
++        buttons.add(new JButton("Editar"));
++        buttons.add(new JButton("Eliminar"));
++        buttons.add(new JButton("Listar"));
++
++        add(form, BorderLayout.NORTH);
++        add(buttons, BorderLayout.CENTER);
++
++        // Tabla
++        table = new JTable();
++        add(new JScrollPane(table), BorderLayout.SOUTH);
++    }
++}
+\ No newline at end of file
+Index: src/views/ChefView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/views/ChefView.java b/src/views/ChefView.java
+new file mode 100644
+--- /dev/null	(date 1756156275466)
++++ b/src/views/ChefView.java	(date 1756156275466)
+@@ -0,0 +1,34 @@
++package views;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class ChefView extends JPanel {
++    private JTable table;
++    private JTextField txtNombre, txtTarifa;
++
++    public ChefView() {
++        setLayout(new BorderLayout());
++
++        JPanel form = new JPanel(new GridLayout(3, 2, 5, 5));
++        form.add(new JLabel("Nombre del Chef:"));
++        txtNombre = new JTextField();
++        form.add(txtNombre);
++
++        form.add(new JLabel("Tarifa:"));
++        txtTarifa = new JTextField();
++        form.add(txtTarifa);
++
++        JPanel buttons = new JPanel();
++        buttons.add(new JButton("Agregar"));
++        buttons.add(new JButton("Editar"));
++        buttons.add(new JButton("Eliminar"));
++        buttons.add(new JButton("Listar"));
++
++        add(form, BorderLayout.NORTH);
++        add(buttons, BorderLayout.CENTER);
++
++        table = new JTable();
++        add(new JScrollPane(table), BorderLayout.SOUTH);
++    }
++}
+Index: src/runner/Main.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/runner/Main.java b/src/runner/Runner.java
+rename from src/runner/Main.java
+rename to src/runner/Runner.java
+--- a/src/runner/Main.java	(revision 5341e5ac809037620bc996d5590245815ecadf41)
++++ b/src/runner/Runner.java	(date 1756156483817)
+@@ -1,20 +1,15 @@
+ package runner;
+ 
+-import views.MainForm;
++import views.MainView;
+ 
+ import javax.swing.*;
+ 
+ //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+ // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+-public class Main {
++public class Runner {
+     public static void main(String[] args) {
+         SwingUtilities.invokeLater(() -> {
+-            JFrame frame = new JFrame("Mi Ventana");
+-            JPanel panel = new JPanel(); // Crear un JPanel vacío o con tus componentes
+-            frame.setContentPane(panel); // No null
+-            frame.setSize(400, 300);
+-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+-            frame.setVisible(true);
++            new MainView().setVisible(true);
+         });
+     }
+ }
+\ No newline at end of file
+Index: src/views/StaffView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/views/StaffView.java b/src/views/StaffView.java
+new file mode 100644
+--- /dev/null	(date 1756156210240)
++++ b/src/views/StaffView.java	(date 1756156210240)
+@@ -0,0 +1,42 @@
++package views;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class StaffView extends JPanel {
++    private JTable table;
++    private JTextField txtNombre, txtApellido, txtDni, txtEspecialidad;
++
++    public StaffView() {
++        setLayout(new BorderLayout());
++
++        JPanel form = new JPanel(new GridLayout(5, 2, 5, 5));
++        form.add(new JLabel("Nombre:"));
++        txtNombre = new JTextField();
++        form.add(txtNombre);
++
++        form.add(new JLabel("Apellido:"));
++        txtApellido = new JTextField();
++        form.add(txtApellido);
++
++        form.add(new JLabel("DNI:"));
++        txtDni = new JTextField();
++        form.add(txtDni);
++
++        form.add(new JLabel("Especialidad:"));
++        txtEspecialidad = new JTextField();
++        form.add(txtEspecialidad);
++
++        JPanel buttons = new JPanel();
++        buttons.add(new JButton("Agregar"));
++        buttons.add(new JButton("Editar"));
++        buttons.add(new JButton("Eliminar"));
++        buttons.add(new JButton("Listar"));
++
++        add(form, BorderLayout.NORTH);
++        add(buttons, BorderLayout.CENTER);
++
++        table = new JTable();
++        add(new JScrollPane(table), BorderLayout.SOUTH);
++    }
++}
+Index: src/views/LocationView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/views/LocationView.java b/src/views/LocationView.java
+new file mode 100644
+--- /dev/null	(date 1756156398801)
++++ b/src/views/LocationView.java	(date 1756156398801)
+@@ -0,0 +1,39 @@
++package views;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class LocationView extends JPanel {
++    private JTable table;
++    private JTextField txtNombre, txtDistancia, txtLogistica;
++
++    public LocationView() {
++        setLayout(new BorderLayout());
++
++        JPanel form = new JPanel(new GridLayout(4, 2, 5, 5));
++        form.add(new JLabel("Nombre de la locación:"));
++        txtNombre = new JTextField();
++        form.add(txtNombre);
++
++        form.add(new JLabel("Distancia (km):"));
++        txtDistancia = new JTextField();
++        form.add(txtDistancia);
++
++        form.add(new JLabel("Necesidades logísticas:"));
++        txtLogistica = new JTextField();
++        form.add(txtLogistica);
++
++        JPanel buttons = new JPanel();
++        buttons.add(new JButton("Agregar"));
++        buttons.add(new JButton("Editar"));
++        buttons.add(new JButton("Eliminar"));
++        buttons.add(new JButton("Listar"));
++
++        add(form, BorderLayout.NORTH);
++        add(buttons, BorderLayout.CENTER);
++
++        table = new JTable();
++        add(new JScrollPane(table), BorderLayout.SOUTH);
++    }
++}
++
+Index: src/views/EventView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/views/EventView.java b/src/views/EventView.java
+new file mode 100644
+--- /dev/null	(date 1756156359326)
++++ b/src/views/EventView.java	(date 1756156359326)
+@@ -0,0 +1,42 @@
++package views;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class EventView extends JPanel {
++    private JTable table;
++    private JTextField txtTipo, txtInvitados, txtFecha, txtLugar;
++
++    public EventView() {
++        setLayout(new BorderLayout());
++
++        JPanel form = new JPanel(new GridLayout(5, 2, 5, 5));
++        form.add(new JLabel("Tipo de Evento:"));
++        txtTipo = new JTextField();
++        form.add(txtTipo);
++
++        form.add(new JLabel("Número de invitados:"));
++        txtInvitados = new JTextField();
++        form.add(txtInvitados);
++
++        form.add(new JLabel("Fecha:"));
++        txtFecha = new JTextField();
++        form.add(txtFecha);
++
++        form.add(new JLabel("Lugar:"));
++        txtLugar = new JTextField();
++        form.add(txtLugar);
++
++        JPanel buttons = new JPanel();
++        buttons.add(new JButton("Agregar"));
++        buttons.add(new JButton("Editar"));
++        buttons.add(new JButton("Eliminar"));
++        buttons.add(new JButton("Listar"));
++
++        add(form, BorderLayout.NORTH);
++        add(buttons, BorderLayout.CENTER);
++
++        table = new JTable();
++        add(new JScrollPane(table), BorderLayout.SOUTH);
++    }
++}
+\ No newline at end of file
+Index: src/views/FinanceView.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/views/FinanceView.java b/src/views/FinanceView.java
+new file mode 100644
+--- /dev/null	(date 1756156439786)
++++ b/src/views/FinanceView.java	(date 1756156439786)
+@@ -0,0 +1,38 @@
++package views;
++
++import javax.swing.*;
++import java.awt.*;
++
++public class FinanceView extends JPanel {
++    private JTable table;
++    private JTextField txtFecha, txtMonto, txtTipo;
++
++    public FinanceView() {
++        setLayout(new BorderLayout());
++
++        JPanel form = new JPanel(new GridLayout(4, 2, 5, 5));
++        form.add(new JLabel("Fecha:"));
++        txtFecha = new JTextField();
++        form.add(txtFecha);
++
++        form.add(new JLabel("Monto:"));
++        txtMonto = new JTextField();
++        form.add(txtMonto);
++
++        form.add(new JLabel("Tipo (Ingreso/Egreso):"));
++        txtTipo = new JTextField();
++        form.add(txtTipo);
++
++        JPanel buttons = new JPanel();
++        buttons.add(new JButton("Agregar"));
++        buttons.add(new JButton("Editar"));
++        buttons.add(new JButton("Eliminar"));
++        buttons.add(new JButton("Listar"));
++
++        add(form, BorderLayout.NORTH);
++        add(buttons, BorderLayout.CENTER);
++
++        table = new JTable();
++        add(new JScrollPane(table), BorderLayout.SOUTH);
++    }
++}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e93c2b8b-0616-40e0-82de-0ce279d973c6\" name=\"Changes\" comment=\"-------\">\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/CentralController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/ClientAdministrator.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/ClientController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/EmployeeAdministrator.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/EmployeeController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/EventAdministrator.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/EventController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/LoginInterface.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/MenuAdministrator.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/MenuController.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/controllers/MoneyAdministration.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/entitys/MoneyTransaction.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/entitys/Service.java\" afterDir=\"false\" />\r\n      <change afterPath=\"$PROJECT_DIR$/src/entitys/ServiceType.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/entitys/Event.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/entitys/Event.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/entitys/EventTypes.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/entitys/EventType.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/entitys/Menu.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/entitys/Menu.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n        <option value=\"Enum\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"PUSH_AUTO_UPDATE\" value=\"true\" />\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"GitHubPullRequestSearchHistory\">{\r\n  &quot;lastFilter&quot;: {\r\n    &quot;state&quot;: &quot;OPEN&quot;,\r\n    &quot;assignee&quot;: &quot;Ivo-Juric&quot;\r\n  }\r\n}</component>\r\n  <component name=\"GithubPullRequestsUISettings\">{\r\n  &quot;selectedUrlAndAccountId&quot;: {\r\n    &quot;url&quot;: &quot;https://github.com/Ivo-Juric/Q-Petit.git&quot;,\r\n    &quot;accountId&quot;: &quot;d6d09aa1-fda3-4aac-aac7-88da6a115fab&quot;\r\n  }\r\n}</component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 0\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"31A2m7KdylIxbXvgrBAVlucdOEx\" />\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"ASKED_SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"Application.Ivo-Juric.runner.Main.executor\": \"Coverage\",\r\n    \"Application.Main (1).executor\": \"Run\",\r\n    \"Application.Main.executor\": \"Run\",\r\n    \"ModuleVcsDetector.initialDetectionPerformed\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"RunOnceActivity.git.unshallow\": \"true\",\r\n    \"git-widget-placeholder\": \"master\",\r\n    \"ignore.virus.scanning.warn.message\": \"true\",\r\n    \"kotlin-language-version-configured\": \"true\",\r\n    \"last_opened_file_path\": \"C:/Users/Ivo/IdeaProjects/Q-Petit\",\r\n    \"node.js.detected.package.eslint\": \"true\",\r\n    \"node.js.detected.package.tslint\": \"true\",\r\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\r\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\r\n    \"nodejs_package_manager_path\": \"npm\",\r\n    \"onboarding.tips.debug.path\": \"C:/Users/User/IdeaProjects/Q-Petit/src/Main.java\",\r\n    \"project.structure.last.edited\": \"Project\",\r\n    \"project.structure.proportion\": \"0.15\",\r\n    \"project.structure.side.proportion\": \"0.2\",\r\n    \"settings.editor.selected.configurable\": \"reference.projectsettings.compiler.javacompiler\",\r\n    \"two.files.diff.last.used.folder\": \"C:/Users/User/IdeaProjects/Q-Petit/src\",\r\n    \"vue.rearranger.settings.migration\": \"true\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CreateClassDialog.RecentsKey\">\r\n      <recent name=\"\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"Ivo-Juric.runner.Main\" type=\"Application\" factoryName=\"Application\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <option name=\"ALTERNATIVE_JRE_PATH\" value=\"openjdk-24\" />\r\n      <option name=\"ALTERNATIVE_JRE_PATH_ENABLED\" value=\"true\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"Ivo-Juric.runner.Main\" />\r\n      <module name=\"Q-Petit\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"Application.Ivo-Juric.runner.Main\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SharedIndexes\">\r\n    <attachedChunks>\r\n      <set>\r\n        <option value=\"bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.23892.409\" />\r\n        <option value=\"bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-IU-252.23892.409\" />\r\n      </set>\r\n    </attachedChunks>\r\n  </component>\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"e93c2b8b-0616-40e0-82de-0ce279d973c6\" name=\"Changes\" comment=\"\" />\r\n      <created>1754952712526</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1754952712526</updated>\r\n      <workItem from=\"1754952713851\" duration=\"484000\" />\r\n      <workItem from=\"1754953215254\" duration=\"505000\" />\r\n      <workItem from=\"1754953734220\" duration=\"825000\" />\r\n      <workItem from=\"1754954577126\" duration=\"112000\" />\r\n      <workItem from=\"1754954699043\" duration=\"124000\" />\r\n      <workItem from=\"1754954834030\" duration=\"44000\" />\r\n      <workItem from=\"1755112405675\" duration=\"485000\" />\r\n      <workItem from=\"1755112920113\" duration=\"2711000\" />\r\n      <workItem from=\"1755196620394\" duration=\"343000\" />\r\n      <workItem from=\"1755197376618\" duration=\"2246000\" />\r\n      <workItem from=\"1755199654236\" duration=\"403000\" />\r\n      <workItem from=\"1755550075910\" duration=\"1200000\" />\r\n      <workItem from=\"1755551351472\" duration=\"4025000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1755115530369</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1755115530369</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1755115629831</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1755115629831</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"-------\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1755199322323</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1755199322323</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00004\" summary=\"-------\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1755199358145</created>\r\n      <option name=\"number\" value=\"00004\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1755199358145</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"5\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums\" />\r\n    <MESSAGE value=\"-------\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"-------\" />\r\n  </component>\r\n  <component name=\"com.intellij.coverage.CoverageDataManagerImpl\">\r\n    <SUITE FILE_PATH=\"coverage/Q_Petit$Ivo_Juric_runner_Main.ic\" NAME=\"Ivo-Juric.runner.Main Coverage Results\" MODIFIED=\"1755550156123\" SOURCE_PROVIDER=\"com.intellij.coverage.DefaultCoverageFileProvider\" RUNNER=\"idea\" COVERAGE_BY_TEST_ENABLED=\"false\" COVERAGE_TRACING_ENABLED=\"true\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 5341e5ac809037620bc996d5590245815ecadf41)
++++ b/.idea/workspace.xml	(date 1756156554447)
+@@ -5,25 +5,24 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="e93c2b8b-0616-40e0-82de-0ce279d973c6" name="Changes" comment="-------">
+-      <change afterPath="$PROJECT_DIR$/src/controllers/CentralController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/ClientAdministrator.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/ClientController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/EmployeeAdministrator.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/EmployeeController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/EventAdministrator.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/EventController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/LoginInterface.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/MenuAdministrator.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/controllers/MoneyAdministration.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/entitys/MoneyTransaction.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/entitys/Service.java" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/entitys/ServiceType.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/entitys/Chef.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/views/ChefView.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/views/EventView.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/views/FinanceView.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/views/LocationView.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/views/MainView.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/views/MenuView.java" afterDir="false" />
++      <change afterPath="$PROJECT_DIR$/src/views/StaffView.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/entitys/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Event.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/entitys/EventTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/EventType.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/entitys/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Menu.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/runner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner/Runner.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/views/MainForm.java" beforeDir="false" />
++    </list>
++    <list id="e802546a-f821-4076-b936-3dac17da2095" name="Changes by alvar" comment="">
++      <change beforePath="$PROJECT_DIR$/src/entitys/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Category.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entitys/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Ingredient.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/entitys/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Location.java" afterDir="false" />
+     </list>
++    <list id="75d8917f-f045-4d4f-9713-0b40c6574866" name="Changes by Nicolas" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -33,8 +32,8 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Interface" />
++        <option value="Enum" />
+         <option value="Class" />
+-        <option value="Enum" />
+       </list>
+     </option>
+   </component>
+@@ -68,6 +67,7 @@
+     "Application.Ivo-Juric.runner.Main.executor": "Coverage",
+     "Application.Main (1).executor": "Run",
+     "Application.Main.executor": "Run",
++    "Application.Runner.executor": "Run",
+     "ModuleVcsDetector.initialDetectionPerformed": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "RunOnceActivity.git.unshallow": "true",
+@@ -137,7 +137,9 @@
+       <workItem from="1755197376618" duration="2246000" />
+       <workItem from="1755199654236" duration="403000" />
+       <workItem from="1755550075910" duration="1200000" />
+-      <workItem from="1755551351472" duration="4025000" />
++      <workItem from="1755551351472" duration="4362000" />
++      <workItem from="1756154072710" duration="184000" />
++      <workItem from="1756154375436" duration="2153000" />
+     </task>
+     <task id="LOCAL-00001" summary="Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums">
+       <option name="closed" value="true" />
+@@ -171,11 +173,38 @@
+       <option name="project" value="LOCAL" />
+       <updated>1755199358145</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="-------">
++      <option name="closed" value="true" />
++      <created>1755555691566</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1755555691566</updated>
++    </task>
++    <task id="LOCAL-00006" summary="-------">
++      <option name="closed" value="true" />
++      <created>1755555724740</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1755555724740</updated>
++    </task>
++    <option name="localTasksCounter" value="7" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+     <option name="version" value="3" />
++  </component>
++  <component name="Vcs.Log.Tabs.Properties">
++    <option name="TAB_STATES">
++      <map>
++        <entry key="MAIN">
++          <value>
++            <State />
++          </value>
++        </entry>
++      </map>
++    </option>
+   </component>
+   <component name="VcsManagerConfiguration">
+     <MESSAGE value="Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums" />
