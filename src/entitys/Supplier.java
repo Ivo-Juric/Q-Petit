@@ -10,4 +10,30 @@ public class Supplier {
         this.name = name;
         this.contactNumber = contactNumber;
     }
+
+    public int getIdSupplier() {
+        return idSupplier;
+    }
+
+    public void setIdSupplier(int idSupplier) {
+        this.idSupplier = idSupplier;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    
 }

@@ -27,4 +27,86 @@ public class Location {
         this.distanceFromHeadquarters = distanceFromHeadquarters;
         this.estimatedMinutesFromHeadquarters = estimatedMinutesFromHeadquarters;
     }
+
+    public int getIdLocation() {
+        return idLocation;
+    }
+
+    public void setIdLocation(int idLocation) {
+        this.idLocation = idLocation;
+    }
+
+    public String getStreetName() {
+        return streetName;
+    }
+
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
+    }
+
+    public int getStreetNumber() {
+        return streetNumber;
+    }
+
+    public void setStreetNumber(int streetNumber) {
+        this.streetNumber = streetNumber;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    public String getContactNumber() {
+        return contactNumber;
+    }
+
+    public void setContactNumber(String contactNumber) {
+        this.contactNumber = contactNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public double getDistanceFromHeadquarters() {
+        return distanceFromHeadquarters;
+    }
+
+    public void setDistanceFromHeadquarters(double distanceFromHeadquarters) {
+        this.distanceFromHeadquarters = distanceFromHeadquarters;
+    }
+
+    public double getEstimatedMinutesFromHeadquarters() {
+        return estimatedMinutesFromHeadquarters;
+    }
+
+    public void setEstimatedMinutesFromHeadquarters(double estimatedMinutesFromHeadquarters) {
+        this.estimatedMinutesFromHeadquarters = estimatedMinutesFromHeadquarters;
+    }
+
+    public List<LogisticalElement> getLogisticalRequirments() {
+        return logisticalRequirments;
+    }
+
+    public void setLogisticalRequirments(List<LogisticalElement> logisticalRequirments) {
+        this.logisticalRequirments = logisticalRequirments;
+    }
+
+    
 }
