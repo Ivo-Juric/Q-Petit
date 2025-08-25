@@ -12,10 +12,10 @@ public class Location {
     private String email;
     private double distanceFromHeadquarters;
     private double estimatedMinutesFromHeadquarters;
-    private List<LogisticalElement> logisticalRequirments;
+    private List<LogisticalElement> logisticalRequirements;
 
     public Location(int idLocation, String streetName, int streetNumber, String city, String state, String contactNumber,
-                    String email, List<LogisticalElement> logisticalRequirments, double distanceFromHeadquarters, double estimatedMinutesFromHeadquarters) {
+                    String email, List<LogisticalElement> logisticalRequirements, double distanceFromHeadquarters, double estimatedMinutesFromHeadquarters) {
         this.idLocation = idLocation;
         this.streetName = streetName;
         this.streetNumber = streetNumber;
@@ -23,7 +23,7 @@ public class Location {
         this.state = state;
         this.contactNumber = contactNumber;
         this.email = email;
-        this.logisticalRequirments = logisticalRequirments;
+        this.logisticalRequirements = logisticalRequirements;
         this.distanceFromHeadquarters = distanceFromHeadquarters;
         this.estimatedMinutesFromHeadquarters = estimatedMinutesFromHeadquarters;
     }

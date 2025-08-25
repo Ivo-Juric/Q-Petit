@@ -4,7 +4,7 @@ public class Ingredient {
     private int  idIngredient;
     private String name;
     private int stock;
-    private double pricePerUnit;
+    private double unitPrice;
 
     public Ingredient(int idIngredient, String name, int stock, double pricePerUnit) {
         this.idIngredient = idIngredient;
