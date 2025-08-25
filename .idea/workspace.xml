@@ -5,25 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e93c2b8b-0616-40e0-82de-0ce279d973c6" name="Changes" comment="-------">
-      <change afterPath="$PROJECT_DIR$/src/controllers/CentralController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/ClientAdministrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/ClientController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/EmployeeAdministrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/EmployeeController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/EventAdministrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/EventController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/LoginInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/MenuAdministrator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/MenuController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/controllers/MoneyAdministration.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entitys/MoneyTransaction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entitys/Service.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/entitys/ServiceType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/entitys/Chef.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/ChefView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/EventView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/FinanceView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/LocationView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/MainView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/MenuView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/views/StaffView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entitys/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entitys/EventTypes.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/EventType.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/entitys/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Menu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/runner/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/runner/Runner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/MainForm.java" beforeDir="false" />
     </list>
+    <list id="e802546a-f821-4076-b936-3dac17da2095" name="Changes by alvar" comment="">
+      <change beforePath="$PROJECT_DIR$/src/entitys/Category.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Category.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entitys/Ingredient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Ingredient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/entitys/Location.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/entitys/Location.java" afterDir="false" />
+    </list>
+    <list id="75d8917f-f045-4d4f-9713-0b40c6574866" name="Changes by Nicolas" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -33,8 +32,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="Enum" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -68,6 +67,7 @@
     "Application.Ivo-Juric.runner.Main.executor": "Coverage",
     "Application.Main (1).executor": "Run",
     "Application.Main.executor": "Run",
+    "Application.Runner.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
@@ -137,7 +137,9 @@
       <workItem from="1755197376618" duration="2246000" />
       <workItem from="1755199654236" duration="403000" />
       <workItem from="1755550075910" duration="1200000" />
-      <workItem from="1755551351472" duration="4025000" />
+      <workItem from="1755551351472" duration="4362000" />
+      <workItem from="1756154072710" duration="184000" />
+      <workItem from="1756154375436" duration="2153000" />
     </task>
     <task id="LOCAL-00001" summary="Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums">
       <option name="closed" value="true" />
@@ -171,11 +173,38 @@
       <option name="project" value="LOCAL" />
       <updated>1755199358145</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="-------">
+      <option name="closed" value="true" />
+      <created>1755555691566</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1755555691566</updated>
+    </task>
+    <task id="LOCAL-00006" summary="-------">
+      <option name="closed" value="true" />
+      <created>1755555724740</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1755555724740</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Se agregaron mas clases, tener cuidado que faltan completar algunas, mas que nada los enums" />
