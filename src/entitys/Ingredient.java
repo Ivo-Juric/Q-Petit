@@ -6,11 +6,11 @@ public class Ingredient {
     private int stock;
     private double unitPrice;
 
-    public Ingredient(int idIngredient, String name, int stock, double pricePerUnit) {
+    public Ingredient(int idIngredient, String name, int stock, double unitPrice) {
         this.idIngredient = idIngredient;
         this.name = name;
         this.stock = stock;
-        this.pricePerUnit = pricePerUnit;
+        this.unitPrice = unitPrice;
     }
 
 
@@ -44,14 +44,16 @@ public class Ingredient {
     }
 
 
-    public double getPricePerUnit() {
-        return pricePerUnit;
+    public double getUnitPrice() {
+        return unitPrice;
     }
 
 
-    public void setPricePerUnit(double pricePerUnit) {
-        this.pricePerUnit = pricePerUnit;
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
+
+
 
     
 }
