@@ -1,3 +1,0 @@
-package entitys;
-
-public enum Category {VEGETARIANO, VEGANO, CELIACO, TRADICIONAL, INFANTIL, GOURMET};
