@@ -10,7 +10,6 @@ import java.util.List;
 public class Runner {
     public static void main(String[] args) {
         try {
-            // primero probamos la conexión
             try (Connection conn = DataBaseConnection.getConnection()) {
                 System.out.println("Conexión exitosa a la base de datos");
             } catch (Exception ex) {
