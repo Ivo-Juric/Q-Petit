@@ -4,12 +4,12 @@ public class EventController implements EventAdministrator{
     public EventController(){}
 
     @Override
-    public void crateEvent() {
+    public void createEvent() {
 
     }
 
     @Override
-    public void uptdateEvent() {
+    public void updateEvent() {
 
     }
 
@@ -29,7 +29,7 @@ public class EventController implements EventAdministrator{
     }
 
     @Override
-    public void generateSerivePaper() {
+    public void generateServicePaper() {
 
     }
 }

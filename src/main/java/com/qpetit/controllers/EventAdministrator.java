@@ -2,10 +2,10 @@ package com.qpetit.controllers;
 
 public interface EventAdministrator {
 
-    void crateEvent();
-    void uptdateEvent();
+    void createEvent();
+    void updateEvent();
     void deleteEvent();
     void assignEmployee();
     void assignMenu();
-    void generateSerivePaper();
+    void generateServicePaper();
 }
