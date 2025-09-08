@@ -7,10 +7,6 @@ import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-/**
- * DAO for Evento table
- */
 public class EventDAO {
 
     public void insert(Event event) throws SQLException {
