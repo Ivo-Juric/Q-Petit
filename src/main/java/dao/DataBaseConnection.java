@@ -6,10 +6,10 @@ import java.sql.SQLException;
 
 public class DataBaseConnection {
 
-    // --- OPCIÓN A: Puerto fijo ---
+
     private static final String jdbcUrl = "jdbc:postgresql://localhost:5432/QPetitDataBase";
     private static final String username = "postgres";
-    private static final String password = "1234";
+    private static final String password = "abcd";
 
     public static Connection getConnection() throws SQLException{
         try {
