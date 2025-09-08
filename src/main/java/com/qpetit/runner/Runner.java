@@ -16,10 +16,8 @@ public class Runner {
             } catch (Exception ex) {
                 System.err.println("Error conectando a la base: " + ex.getMessage());
                 ex.printStackTrace();
-                return; // si falla la conexión, no seguimos
+                return; 
             }
-
-            // ahora traemos y mostramos los eventos
             EventDAO dao = new EventDAO();
             List<Event> eventos = dao.getAll();
 
@@ -37,7 +35,6 @@ public class Runner {
                     System.out.println("-------------------------------");
                 }
             }
-
         } catch (Exception e) {
             e.printStackTrace();
         }
