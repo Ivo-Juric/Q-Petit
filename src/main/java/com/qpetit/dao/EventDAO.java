@@ -13,7 +13,7 @@ public class EventDAO {
                 "(fecha_Inicio, fecha_Fin, CantidadInvitados, id_TipoEvento, tipo_Menu, id_Proveedor, " +
                 "LinkHojaServicio, id_Cliente, id_Menu, id_Estado) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        try (Connection conn = DataBaseConnection.getConnection();
+        try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setTimestamp(1, Timestamp.valueOf(event.getFechaInicio()));
@@ -34,7 +34,7 @@ public class EventDAO {
     public List<Event> getAll() throws SQLException {
         List<Event> events = new ArrayList<>();
         String sql = "SELECT * FROM Evento";
-        try (Connection conn = DataBaseConnection.getConnection();
+        try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
 
@@ -48,7 +48,7 @@ public class EventDAO {
     public Event getById(int id) throws SQLException {
         Event event = null;
         String sql = "SELECT * FROM Evento WHERE id_Evento = ?";
-        try (Connection conn = DataBaseConnection.getConnection();
+        try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             try (ResultSet rs = stmt.executeQuery()) {
@@ -62,7 +62,7 @@ public class EventDAO {
 
     public void update(Event event) throws SQLException {
         String sql = "UPDATE Evento SET fecha_Inicio=?, fecha_Fin=?, CantidadInvitados=?, id_TipoEvento=?, tipo_Menu=?, id_Proveedor=?, LinkHojaServicio=?, id_Cliente=?, id_Menu=?, id_Estado=? WHERE id_Evento=?";
-        try (Connection conn = DataBaseConnection.getConnection();
+        try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setTimestamp(1, Timestamp.valueOf(event.getFechaInicio()));
@@ -83,7 +83,7 @@ public class EventDAO {
 
     public void delete(int id) throws SQLException {
         String sql = "DELETE FROM Evento WHERE id_Evento=?";
-        try (Connection conn = DataBaseConnection.getConnection();
+        try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
             stmt.executeUpdate();
