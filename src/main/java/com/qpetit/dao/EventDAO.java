@@ -1,7 +1,6 @@
 package com.qpetit.dao;
 
 import com.qpetit.entities.Event;
-import dao.DataBaseConnection;
 
 import java.sql.*;
 import java.time.LocalDateTime;

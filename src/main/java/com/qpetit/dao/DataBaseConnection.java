@@ -1,4 +1,4 @@
-package dao;
+package com.qpetit.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
