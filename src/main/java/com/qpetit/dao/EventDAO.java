@@ -9,23 +9,23 @@ import java.util.List;
 public class EventDAO {
 
     public void insert(Event event) throws SQLException {
-        String sql = "INSERT INTO Evento " +
-                "(fecha_Inicio, fecha_Fin, CantidadInvitados, id_TipoEvento, tipo_Menu, id_Proveedor, " +
-                "LinkHojaServicio, id_Cliente, id_Menu, id_Estado) " +
+        String sql = "INSERT INTO Events " +
+                "(start_date, end_date, guest_count, event_type_id, menu_type_id, supplier_id, " +
+                "service_sheet_link, customer_id, menu_id, status_id " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setTimestamp(1, Timestamp.valueOf(event.getFechaInicio()));
-            stmt.setTimestamp(2, Timestamp.valueOf(event.getFechaFin()));
-            stmt.setInt(3, event.getCantidadInvitados());
-            stmt.setInt(4, event.getIdTipoEvento());
-            stmt.setInt(5, event.getTipoMenu());
-            stmt.setInt(6, event.getIdProveedor());
-            stmt.setString(7, event.getLinkHojaServicio());
-            stmt.setString(8, event.getIdCliente());
-            stmt.setInt(9, event.getIdMenu());
-            stmt.setInt(10, event.getIdEstado());
+            stmt.setTimestamp(1, Timestamp.valueOf(event.getStartDate()));
+            stmt.setTimestamp(2, Timestamp.valueOf(event.getEndDate()));
+            stmt.setInt(3, event.getGuestCount());
+            stmt.setInt(4, event.getEventTypeId());
+            stmt.setInt(5, event.getMenuType());
+            stmt.setInt(6, event.getSupplierId());
+            stmt.setString(7, event.getServiceSheetLink());
+            stmt.setString(8, event.getCustomerId());
+            stmt.setInt(9, event.getMenuId());
+            stmt.setInt(10, event.getStatusId());
 
             stmt.executeUpdate();
         }
@@ -33,7 +33,7 @@ public class EventDAO {
 
     public List<Event> getAll() throws SQLException {
         List<Event> events = new ArrayList<>();
-        String sql = "SELECT * FROM Evento";
+        String sql = "SELECT * FROM Events";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql);
              ResultSet rs = stmt.executeQuery()) {
@@ -47,7 +47,7 @@ public class EventDAO {
 
     public Event getById(int id) throws SQLException {
         Event event = null;
-        String sql = "SELECT * FROM Evento WHERE id_Evento = ?";
+        String sql = "SELECT * FROM Evento WHERE event_id = ?";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -61,28 +61,28 @@ public class EventDAO {
     }
 
     public void update(Event event) throws SQLException {
-        String sql = "UPDATE Evento SET fecha_Inicio=?, fecha_Fin=?, CantidadInvitados=?, id_TipoEvento=?, tipo_Menu=?, id_Proveedor=?, LinkHojaServicio=?, id_Cliente=?, id_Menu=?, id_Estado=? WHERE id_Evento=?";
+        String sql = "UPDATE Events SET start_date=?, end_date=?, guest_count=?, event_type_id=?, menu_type_id=?, supplier_id=?, service_sheet_link=?, customer_id=?, menu_id=?, status_id=? WHERE event_id=?";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setTimestamp(1, Timestamp.valueOf(event.getFechaInicio()));
-            stmt.setTimestamp(2, Timestamp.valueOf(event.getFechaFin()));
-            stmt.setInt(3, event.getCantidadInvitados());
-            stmt.setInt(4, event.getIdTipoEvento());
-            stmt.setInt(5, event.getTipoMenu());
-            stmt.setInt(6, event.getIdProveedor());
-            stmt.setString(7, event.getLinkHojaServicio());
-            stmt.setString(8, event.getIdCliente());
-            stmt.setInt(9, event.getIdMenu());
-            stmt.setInt(10, event.getIdEstado());
-            stmt.setInt(11, event.getIdEvent());
+            stmt.setTimestamp(1, Timestamp.valueOf(event.getStartDate()));
+            stmt.setTimestamp(2, Timestamp.valueOf(event.getEndDate()));
+            stmt.setInt(3, event.getGuestCount());
+            stmt.setInt(4, event.getEventTypeId());
+            stmt.setInt(5, event.getMenuType());
+            stmt.setInt(6, event.getSupplierId());
+            stmt.setString(7, event.getServiceSheetLink());
+            stmt.setString(8, event.getCustomerId());
+            stmt.setInt(9, event.getMenuId());
+            stmt.setInt(10, event.getStatusId());
+            stmt.setInt(11, event.getEventId());
 
             stmt.executeUpdate();
         }
     }
 
     public void delete(int id) throws SQLException {
-        String sql = "DELETE FROM Evento WHERE id_Evento=?";
+        String sql = "DELETE FROM Events WHERE event_id=?";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -91,19 +91,19 @@ public class EventDAO {
     }
 
     private Event mapRowToEvent(ResultSet rs) throws SQLException {
-        int idEvent = rs.getInt("id_Evento");
-        LocalDateTime fechaInicio = rs.getTimestamp("fecha_Inicio").toLocalDateTime();
-        LocalDateTime fechaFin = rs.getTimestamp("fecha_Fin").toLocalDateTime();
-        int cantidadInvitados = rs.getInt("CantidadInvitados");
-        int idTipoEvento = rs.getInt("id_TipoEvento");
-        int tipoMenu = rs.getInt("tipo_Menu");
-        int idProveedor = rs.getInt("id_Proveedor");
-        String linkHojaServicio = rs.getString("LinkHojaServicio");
-        String idCliente = rs.getString("id_Cliente");
-        int idMenu = rs.getInt("id_Menu");
-        int idEstado = rs.getInt("id_Estado");
+        int eventId = rs.getInt("event_ID");
+        LocalDateTime startDate = rs.getTimestamp("start_date").toLocalDateTime();
+        LocalDateTime endDate = rs.getTimestamp("end_date").toLocalDateTime();
+        int guestCount = rs.getInt("guest_count");
+        int eventTypeId = rs.getInt("event_type_ID");
+        int menuTypeId = rs.getInt("menu_type_ID");
+        int supplierId = rs.getInt("supplier_ID");
+        String serviceSheetLink = rs.getString("service_sheet_link");
+        String customerId = rs.getString("customer_ID");
+        int menuId = rs.getInt("menu_ID");
+        int statusId = rs.getInt("status_ID");
 
-        return new Event(idEvent, fechaInicio, fechaFin, cantidadInvitados, idTipoEvento,
-                tipoMenu, idProveedor, linkHojaServicio, idCliente, idMenu, idEstado);
+        return new Event(eventId, startDate, endDate, guestCount, eventTypeId,
+                menuTypeId, supplierId, serviceSheetLink, customerId, menuId, statusId);
     }
 }

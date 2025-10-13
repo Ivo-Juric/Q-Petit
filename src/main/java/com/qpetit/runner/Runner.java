@@ -23,13 +23,13 @@ public class Runner {
                 System.out.println("No hay eventos cargados en la base.");
             } else {
                 for (Event ev : eventos) {
-                    System.out.println("Evento ID: " + ev.getIdEvent());
-                    System.out.println("Inicio: " + ev.getFechaInicio());
-                    System.out.println("Fin: " + ev.getFechaFin());
-                    System.out.println("Invitados: " + ev.getCantidadInvitados());
-                    System.out.println("Tipo evento: " + ev.getIdTipoEvento());
-                    System.out.println("Cliente DNI: " + ev.getIdCliente());
-                    System.out.println("Estado: " + ev.getIdEstado());
+                    System.out.println("Evento ID: " + ev.getEventId());
+                    System.out.println("Inicio: " + ev.getStartDate());
+                    System.out.println("Fin: " + ev.getEndDate());
+                    System.out.println("Invitados: " + ev.getGuestCount());
+                    System.out.println("Tipo evento: " + ev.getEventTypeId());
+                    System.out.println("Cliente DNI: " + ev.getCustomerId());
+                    System.out.println("Estado: " + ev.getStatusId());
                     System.out.println("-------------------------------");
                 }
             }

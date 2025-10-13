@@ -3,67 +3,67 @@ package com.qpetit.entities;
 import java.time.LocalDateTime;
 
 public class Event {
-    private int idEvent;
-    private LocalDateTime fechaInicio;
-    private LocalDateTime fechaFin;
-    private int cantidadInvitados;
-    private int idTipoEvento; // FK a TipoEvento
-    private int tipoMenu;     // tipo_Menu (columna int)
-    private int idProveedor;
-    private String linkHojaServicio;
-    private String idCliente; // DNI cliente
-    private int idMenu;
-    private int idEstado;
+    private int eventId;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private int guestCount;
+    private int eventTypeId; // FK a TipoEvento
+    private int menuType;     // tipo_Menu (columna int)
+    private int supplierId;
+    private String serviceSheetLink;
+    private String customerId; // DNI cliente
+    private int menuId;
+    private int statusId;
 
     public Event() {}
 
-    public Event(int idEvent, LocalDateTime fechaInicio, LocalDateTime fechaFin, int cantidadInvitados,
-                 int idTipoEvento, int tipoMenu, int idProveedor, String linkHojaServicio,
-                 String idCliente, int idMenu, int idEstado) {
-        this.idEvent = idEvent;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.cantidadInvitados = cantidadInvitados;
-        this.idTipoEvento = idTipoEvento;
-        this.tipoMenu = tipoMenu;
-        this.idProveedor = idProveedor;
-        this.linkHojaServicio = linkHojaServicio;
-        this.idCliente = idCliente;
-        this.idMenu = idMenu;
-        this.idEstado = idEstado;
+    public Event(int eventId, LocalDateTime startDate, LocalDateTime endDate, int guestCount,
+                 int eventTypeId, int menuType, int supplierId, String serviceSheetLink,
+                 String customerId, int menuId, int statusId) {
+        this.eventId = eventId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.guestCount = guestCount;
+        this.eventTypeId = eventTypeId;
+        this.menuType = menuType;
+        this.supplierId = supplierId;
+        this.serviceSheetLink = serviceSheetLink;
+        this.customerId = customerId;
+        this.menuId = menuId;
+        this.statusId = statusId;
     }
 
     // getters y setters
-    public int getIdEvent() { return idEvent; }
-    public void setIdEvent(int idEvent) { this.idEvent = idEvent; }
+    public int getEventId() { return eventId; }
+    public void setEventId(int eventId) { this.eventId = eventId; }
 
-    public LocalDateTime getFechaInicio() { return fechaInicio; }
-    public void setFechaInicio(LocalDateTime fechaInicio) { this.fechaInicio = fechaInicio; }
+    public LocalDateTime getStartDate() { return startDate; }
+    public void setStartDate(LocalDateTime startDate) { this.startDate = startDate; }
 
-    public LocalDateTime getFechaFin() { return fechaFin; }
-    public void setFechaFin(LocalDateTime fechaFin) { this.fechaFin = fechaFin; }
+    public LocalDateTime getEndDate() { return endDate; }
+    public void setEndDate(LocalDateTime endDate) { this.endDate = endDate; }
 
-    public int getCantidadInvitados() { return cantidadInvitados; }
-    public void setCantidadInvitados(int cantidadInvitados) { this.cantidadInvitados = cantidadInvitados; }
+    public int getGuestCount() { return guestCount; }
+    public void setGuestCount(int guestCount) { this.guestCount = guestCount; }
 
-    public int getIdTipoEvento() { return idTipoEvento; }
-    public void setIdTipoEvento(int idTipoEvento) { this.idTipoEvento = idTipoEvento; }
+    public int getEventTypeId() { return eventTypeId; }
+    public void setEventTypeId(int eventTypeId) { this.eventTypeId = eventTypeId; }
 
-    public int getTipoMenu() { return tipoMenu; }
-    public void setTipoMenu(int tipoMenu) { this.tipoMenu = tipoMenu; }
+    public int getMenuType() { return menuType; }
+    public void setMenuType(int menuType) { this.menuType = menuType; }
 
-    public int getIdProveedor() { return idProveedor; }
-    public void setIdProveedor(int idProveedor) { this.idProveedor = idProveedor; }
+    public int getSupplierId() { return supplierId; }
+    public void setSupplierId(int supplierId) { this.supplierId = supplierId; }
 
-    public String getLinkHojaServicio() { return linkHojaServicio; }
-    public void setLinkHojaServicio(String linkHojaServicio) { this.linkHojaServicio = linkHojaServicio; }
+    public String getServiceSheetLink() { return serviceSheetLink; }
+    public void setServiceSheetLink(String serviceSheetLink) { this.serviceSheetLink = serviceSheetLink; }
 
-    public String getIdCliente() { return idCliente; }
-    public void setIdCliente(String idCliente) { this.idCliente = idCliente; }
+    public String getCustomerId() { return customerId; }
+    public void setCustomerId(String customerId) { this.customerId = customerId; }
 
-    public int getIdMenu() { return idMenu; }
-    public void setIdMenu(int idMenu) { this.idMenu = idMenu; }
+    public int getMenuId() { return menuId; }
+    public void setMenuId(int menuId) { this.menuId = menuId; }
 
-    public int getIdEstado() { return idEstado; }
-    public void setIdEstado(int idEstado) { this.idEstado = idEstado; }
+    public int getStatusId() { return statusId; }
+    public void setStatusId(int statusId) { this.statusId = statusId; }
 }
