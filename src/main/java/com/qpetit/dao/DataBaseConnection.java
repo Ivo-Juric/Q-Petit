@@ -8,7 +8,7 @@ public final class DataBaseConnection {
 
     private static final String JDBC_URL = "jdbc:postgresql://localhost:5432/QPetitDataBase";
     private static final String USERNAME = "postgres";
-    private static final String PASSWORD = "[PASSWORD]";
+    private static final String PASSWORD = "1234";
 
     private DataBaseConnection() {
         try {

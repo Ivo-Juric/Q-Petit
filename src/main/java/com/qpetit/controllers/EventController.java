@@ -31,7 +31,7 @@ public class EventController implements Administrator {
                 Event event = (Event) o;
                 eventDAO.insert(event);
                 eventList.add(event);
-                System.out.println("✅ Evento agregado correctamente: ID -> " + event.getIdEvent());
+                System.out.println("✅ Evento agregado correctamente: ID -> " + event.getEventId());
             } else {
                 System.err.println("❌ Objeto inválido. Se esperaba un Event.");
             }
@@ -49,7 +49,7 @@ public class EventController implements Administrator {
             if (o instanceof Event) {
                 Event event = (Event) o;
                 eventDAO.update(event);
-                System.out.println("✅ Evento actualizado correctamente: ID -> " + event.getIdEvent());
+                System.out.println("✅ Evento actualizado correctamente: ID -> " + event.getEventId());
             } else {
                 System.err.println("❌ Objeto inválido. Se esperaba un Event.");
             }
@@ -69,13 +69,13 @@ public class EventController implements Administrator {
         try {
             if (o instanceof Event) {
                 Event event = (Event) o;
-                eventDAO.delete(event.getIdEvent());
-                eventList.removeIf(e -> e.getIdEvent() == event.getIdEvent());
-                System.out.println("✅ Evento eliminado correctamente: ID -> " + event.getIdEvent());
+                eventDAO.delete(event.getEventId());
+                eventList.removeIf(e -> e.getEventId() == event.getEventId());
+                System.out.println("✅ Evento eliminado correctamente: ID -> " + event.getEventId());
             } else if (o instanceof Integer) {
                 int id = (Integer) o;
                 eventDAO.delete(id);
-                eventList.removeIf(e -> e.getIdEvent() == id);
+                eventList.removeIf(e -> e.getEventId() == id);
                 System.out.println("✅ Evento eliminado correctamente: ID -> " + id);
             } else {
                 System.err.println("❌ Objeto inválido. Debe ser Event o Integer (ID).");
@@ -100,10 +100,6 @@ public class EventController implements Administrator {
             return new ArrayList<>();
         }
     }
-
-    // ============================
-    // MÉTODOS FUTUROS
-    // ============================
     public void assignEmployee() {
         System.out.println("⚙️ Funcionalidad pendiente: asignar empleados a un evento.");
     }
