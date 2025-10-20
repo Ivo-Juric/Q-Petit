@@ -1,210 +1,209 @@
 -- ======================
--- TABLAS BASE
+-- BASE TABLES
 -- ======================
 
-CREATE TABLE Proveedor (
-    id_Proveedor SERIAL PRIMARY KEY,
-    Nombre VARCHAR(30),
-    Contacto VARCHAR(30)
+CREATE TABLE Suppliers (
+    supplier_ID SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    contact VARCHAR(30)
 );
 
-CREATE TABLE CategoriasMenu (
-    id_Categoria SERIAL PRIMARY KEY,
-    Descripcion VARCHAR(30)
+CREATE TABLE MenuCategories (
+    category_ID SERIAL PRIMARY KEY,
+    description VARCHAR(30)
 );
 
-CREATE TABLE TipoMenu (
-    id_Tipo SERIAL PRIMARY KEY,
-    Descripcion VARCHAR(30)
+CREATE TABLE MenuTypes (
+    type_ID SERIAL PRIMARY KEY,
+    description VARCHAR(30)
 );
 
-CREATE TABLE Ingredientes (
-    id_Ingrediente SERIAL PRIMARY KEY,
-    Nombre VARCHAR(30),
-    Stock INT
+CREATE TABLE Ingredients (
+    ingredient_ID SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    stock INT
 );
 
 -- ======================
 -- MENU
 -- ======================
 
-CREATE TABLE Menu (
-    id_Menu SERIAL PRIMARY KEY,
-    Nombre VARCHAR(30),
-    id_Categoria INT REFERENCES CategoriasMenu(id_Categoria),
-    tipo_Menu INT REFERENCES TipoMenu(id_Tipo),
-    id_Proveedor INT REFERENCES Proveedor(id_Proveedor),
-    PrecioBase MONEY,
-    CantidadMinComensales INT,
-    Entrada BOOLEAN,
-    Principal BOOLEAN,
-    Postre BOOLEAN,
-    Observaciones VARCHAR(200)
+CREATE TABLE Menus (
+    menu_ID SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    category_ID INT REFERENCES MenuCategories(category_ID),
+    menu_type_ID INT REFERENCES MenuTypes(type_ID),
+    supplier_ID INT REFERENCES Suppliers(supplier_ID),
+    base_price MONEY,
+    min_guest_count INT,
+    is_starter BOOLEAN,
+    is_main_course BOOLEAN,
+    is_dessert BOOLEAN,
+    notes VARCHAR(200)
 );
 
-CREATE TABLE Menu_Ingredientes (
-    id_Menu INT REFERENCES Menu(id_Menu),
-    id_Ingrediente INT REFERENCES Ingredientes(id_Ingrediente),
-    CantidadUtilizadaGr DOUBLE PRECISION,
-    PRIMARY KEY (id_Menu, id_Ingrediente)
+CREATE TABLE MenuIngredients (
+    menu_ID INT REFERENCES Menus(menu_ID),
+    ingredient_ID INT REFERENCES Ingredients(ingredient_ID),
+    grams_used DOUBLE PRECISION,
+    PRIMARY KEY (menu_ID, ingredient_ID)
 );
 
 -- ======================
--- CLIENTE Y USUARIO
+-- CLIENT AND USERS
 -- ======================
 
-CREATE TABLE Rol (
-    id_Rol SERIAL PRIMARY KEY,
-    NombreUsuario VARCHAR(20)
+CREATE TABLE UserRoles (
+    role_ID SERIAL PRIMARY KEY,
+    role_name VARCHAR(20)
 );
 
-CREATE TABLE Usuario (
-    id_Usuario SERIAL PRIMARY KEY,
-    NombreUsuario VARCHAR(20),
-    Contraseña VARCHAR(30),
-    id_Rol INT REFERENCES Rol(id_Rol),
-    Telefono VARCHAR(30)
+CREATE TABLE Users (
+    user_ID SERIAL PRIMARY KEY,
+    username VARCHAR(20),
+    password VARCHAR(30),
+    role_ID INT REFERENCES UserRoles(role_ID),
+    phone_number VARCHAR(30)
 );
 
-CREATE TABLE Cliente (
+CREATE TABLE Customers (
     DNI VARCHAR(8) PRIMARY KEY,
-    Nombre VARCHAR(30),
-    Apellido VARCHAR(30),
-    Email VARCHAR(35),
-    Telefono VARCHAR(16),
-    Observaciones VARCHAR(300)
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    email VARCHAR(35),
+    phone VARCHAR(16),
+    notes VARCHAR(300)
 );
 
 -- ======================
--- PERSONAL
+-- STAFF
 -- ======================
 
-CREATE TABLE Disponibilidades (
-    id_Disponibilidad SERIAL PRIMARY KEY,
-    Dia DATE
+CREATE TABLE Availability (
+    availability_ID SERIAL PRIMARY KEY,
+    date_available DATE
 );
 
-CREATE TABLE TipoPersonal (
-    id_Tipo SERIAL PRIMARY KEY,
-    Descripcion VARCHAR(30)
+CREATE TABLE StaffTypes (
+    type_ID SERIAL PRIMARY KEY,
+    description VARCHAR(30)
 );
 
-CREATE TABLE Personal (
+CREATE TABLE Staff (
     DNI INT PRIMARY KEY,
-    Nombre VARCHAR(30),
-    Apellido VARCHAR(30),
-    Edad INT,
-    id_Disponibilidad INT REFERENCES Disponibilidades(id_Disponibilidad),
-    id_TipoPersonal INT REFERENCES TipoPersonal(id_Tipo),
-    Telefono VARCHAR(30),
-    Gmail VARCHAR(30)
+    first_name VARCHAR(30),
+    last_name VARCHAR(30),
+    age INT,
+    availability_ID INT REFERENCES Availability(availability_ID),
+    staff_type_ID INT REFERENCES StaffTypes(type_ID),
+    phone VARCHAR(30),
+    email VARCHAR(30)
 );
 
-CREATE TABLE Especialidades (
-    id_Especialidad SERIAL PRIMARY KEY,
-    Nombre VARCHAR(30)
+CREATE TABLE Specialities (
+    specialty_ID SERIAL PRIMARY KEY,
+    name VARCHAR(30)
 );
 
-CREATE TABLE Personal_Especialidades (
-    id_Especialidad INT REFERENCES Especialidades(id_Especialidad),
-    id_Personal INT REFERENCES Personal(DNI),
-    PRIMARY KEY (id_Especialidad, id_Personal)
-);
-
--- ======================
--- EVENTOS
--- ======================
-
-CREATE TABLE Estado (
-    id_Estado SERIAL PRIMARY KEY,
-    Descripcion VARCHAR(30)
-);
-
-CREATE TABLE TipoEvento (
-    id_TipoEvento SERIAL PRIMARY KEY,
-    Descripcion VARCHAR(30)
-);
-
-CREATE TABLE Evento (
-    id_Evento SERIAL PRIMARY KEY,
-    fecha_Inicio TIMESTAMP,
-    fecha_Fin TIMESTAMP,
-    CantidadInvitados INT,
-    id_TipoEvento INT REFERENCES TipoEvento(id_TipoEvento),
-    tipo_Menu INT,
-    id_Proveedor INT REFERENCES Proveedor(id_Proveedor),
-    LinkHojaServicio VARCHAR(200),
-    id_Cliente VARCHAR(8) REFERENCES Cliente(DNI),
-    id_Menu INT REFERENCES Menu(id_Menu),
-    id_Estado INT REFERENCES Estado(id_Estado)
-);
-
-CREATE TABLE Evento_Personal (
-    id_Personal INT REFERENCES Personal(DNI),
-    id_Evento INT REFERENCES Evento(id_Evento),
-    CantidadUtilizadaGr DOUBLE PRECISION,
-    PRIMARY KEY (id_Personal, id_Evento)
-);
-
-CREATE TABLE InsumoTecnico (
-    id_insumo SERIAL PRIMARY KEY,
-    Nombre VARCHAR(30),
-    Marca VARCHAR(30),
-    cantDisponible INT
-);
-
-CREATE TABLE Evento_Insumo (
-    id_insumo INT REFERENCES InsumoTecnico(id_insumo),
-    id_evento INT REFERENCES Evento(id_Evento),
-    cantUtilizada INT,
-    PRIMARY KEY (id_insumo, id_evento)
+CREATE TABLE StaffSpecialities (
+    specialty_ID INT REFERENCES Specialities(specialty_ID),
+    staff_ID INT REFERENCES Staff(DNI),
+    PRIMARY KEY (specialty_ID, staff_ID)
 );
 
 -- ======================
--- LOGÍSTICA
+-- EVENTS
 -- ======================
 
-CREATE TABLE Ciudad (
-    id_Ciudad SERIAL PRIMARY KEY,
-    Descripcion VARCHAR(30)
+CREATE TABLE Status (
+    status_ID SERIAL PRIMARY KEY,
+    description VARCHAR(30)
 );
 
-CREATE TABLE Vehiculo (
-    id_Vehiculo SERIAL PRIMARY KEY,
-    Patente VARCHAR(10),
-    Anio_Modelo INT,
-    Disponibilidad BOOLEAN,
-    CapacidadCarga INT
+CREATE TABLE EventTypes (
+    event_type_ID SERIAL PRIMARY KEY,
+    description VARCHAR(30)
 );
 
-CREATE TABLE Logistica (
-    id_Logistica SERIAL PRIMARY KEY,
-    id_Vehiculo INT REFERENCES Vehiculo(id_Vehiculo)
+CREATE TABLE Events (
+    event_ID SERIAL PRIMARY KEY,
+    start_date TIMESTAMP,
+    end_date TIMESTAMP,
+    guest_count INT,
+    event_type_ID INT REFERENCES EventTypes(event_type_ID),
+    menu_type_ID INT REFERENCES MenuTypes(type_ID),
+    supplier_ID INT REFERENCES Suppliers(supplier_ID),
+    service_sheet_link VARCHAR(200),
+    customer_ID VARCHAR(8) REFERENCES Customers(DNI),
+    menu_ID INT REFERENCES Menus(menu_ID),
+    status_ID INT REFERENCES Status(status_ID)
 );
 
-CREATE TABLE Locacion (
-    id_Locacion SERIAL PRIMARY KEY,
-    id_Ciudad INT REFERENCES Ciudad(id_Ciudad),
-    DistanciaSedeKm DOUBLE PRECISION,
-    id_Logistica INT REFERENCES Logistica(id_Logistica)
+CREATE TABLE EventStaff (
+    staff_ID INT REFERENCES Staff(DNI),
+    event_ID INT REFERENCES Events(event_ID),
+    PRIMARY KEY (staff_ID, event_ID)
 );
 
-CREATE TABLE Logistica_Vehiculo (
-    id_Logistica INT REFERENCES Logistica(id_Logistica),
-    id_Vehiculo INT REFERENCES Vehiculo(id_Vehiculo),
-    PRIMARY KEY (id_Logistica, id_Vehiculo)
+CREATE TABLE TechnicalSupplies (
+    supply_ID SERIAL PRIMARY KEY,
+    name VARCHAR(30),
+    brand VARCHAR(30),
+    available_quantity INT
+);
+
+CREATE TABLE EventSupplies (
+    supply_ID INT REFERENCES TechnicalSupplies(supply_ID),
+    event_ID INT REFERENCES Events(event_ID),
+    quantity_used INT,
+    PRIMARY KEY (supply_ID, event_ID)
 );
 
 -- ======================
--- MOVIMIENTOS
+-- LOGISTICS
 -- ======================
 
-CREATE TABLE Movimiento (
-    id_Movimiento SERIAL PRIMARY KEY,
-    fecha TIMESTAMP,
-    esIngreso BOOLEAN,
-    importe DECIMAL(12,3),
-    descripcion VARCHAR(100),
-    id_Evento INT REFERENCES Evento(id_Evento),
-    id_Usuario INT REFERENCES Usuario(id_Usuario)
+CREATE TABLE Cities (
+    city_ID SERIAL PRIMARY KEY,
+    description VARCHAR(30)
+);
+
+CREATE TABLE Vehicles (
+    vehicle_ID SERIAL PRIMARY KEY,
+    number_plate VARCHAR(10),
+    model_year INT,
+    availability BOOLEAN,
+    load_capacity INT
+);
+
+CREATE TABLE Logistics (
+    logistics_ID SERIAL PRIMARY KEY,
+    vehicle_ID INT REFERENCES Vehicles(vehicle_ID)
+);
+
+CREATE TABLE Locations (
+    location_ID SERIAL PRIMARY KEY,
+    city_ID INT REFERENCES Cities(city_ID),
+    distance_from_headquarters_km DOUBLE PRECISION,
+    logistics_ID INT REFERENCES Logistics(logistics_ID)
+);
+
+CREATE TABLE Logistics_Vehicles (
+    logistics_ID INT REFERENCES Logistics(logistics_ID),
+    vehicle_ID INT REFERENCES Vehicles(vehicle_ID),
+    PRIMARY KEY (logistics_ID, vehicle_ID)
+);
+
+-- ======================
+-- MOVEMENTS
+-- ======================
+
+CREATE TABLE Movements (
+    movement_ID SERIAL PRIMARY KEY,
+    date TIMESTAMP,
+    is_income BOOLEAN,
+    amount DECIMAL(12,3),
+    description VARCHAR(100),
+    event_ID INT REFERENCES Events(event_ID),
+    user_ID INT REFERENCES Users(user_ID)
 );
