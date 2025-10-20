@@ -47,7 +47,7 @@ public class EventDAO {
 
     public Event getById(int id) throws SQLException {
         Event event = null;
-        String sql = "SELECT * FROM Evento WHERE event_id = ?";
+        String sql = "SELECT * FROM Events WHERE event_ID = ?";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
@@ -61,7 +61,7 @@ public class EventDAO {
     }
 
     public void update(Event event) throws SQLException {
-        String sql = "UPDATE Events SET start_date=?, end_date=?, guest_count=?, event_type_id=?, menu_type_id=?, supplier_id=?, service_sheet_link=?, customer_id=?, menu_id=?, status_id=? WHERE event_id=?";
+        String sql = "UPDATE Events SET start_date=?, end_date=?, guest_count=?, event_type_ID=?, menu_type_ID=?, supplier_ID=?, service_sheet_link=?, customer_ID=?, menu_ID=?, status_ID=? WHERE event_ID=?";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
 
@@ -82,7 +82,7 @@ public class EventDAO {
     }
 
     public void delete(int id) throws SQLException {
-        String sql = "DELETE FROM Events WHERE event_id=?";
+        String sql = "DELETE FROM Events WHERE event_ID=?";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setInt(1, id);
