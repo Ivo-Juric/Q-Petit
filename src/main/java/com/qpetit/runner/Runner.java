@@ -30,7 +30,7 @@ public class Runner {
                     System.out.println("Tipo evento: " + ev.getEventTypeId());
                     System.out.println("Cliente DNI: " + ev.getCustomerId());
                     System.out.println("Estado: " + ev.getStatusId());
-                    System.out.println("-------------------------------");
+                    System.out.println("--------------------------------");
                 }
             }
         } catch (Exception e) {

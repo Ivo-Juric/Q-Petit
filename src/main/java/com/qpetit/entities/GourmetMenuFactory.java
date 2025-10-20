@@ -1,3 +1,4 @@
+package com.qpetit.entities;
 import com.qpetit.entities.Category;
 import com.qpetit.entities.Menu;
 import com.qpetit.entities.MenuFactory;
