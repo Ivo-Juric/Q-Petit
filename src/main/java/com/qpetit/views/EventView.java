@@ -2,6 +2,9 @@ package com.qpetit.views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
+import com.qpetit.entities.Event;
+import javax.swing.table.DefaultTableModel;
 
 public class EventView extends JPanel {
     private JTable table;
@@ -38,5 +41,25 @@ public class EventView extends JPanel {
 
         table = new JTable();
         add(new JScrollPane(table), BorderLayout.SOUTH);
+    }
+
+    // Permite que el controlador cargue eventos en la tabla
+    public void setEvents(List<Event> events) {
+        String[] columns = {"ID", "Inicio", "Fin", "Invitados", "TipoEvento", "Cliente", "Estado"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+        if (events != null) {
+            for (Event e : events) {
+                model.addRow(new Object[]{
+                        e.getEventId(),
+                        e.getStartDate(),
+                        e.getEndDate(),
+                        e.getGuestCount(),
+                        e.getEventTypeId(),
+                        e.getCustomerId(),
+                        e.getStatusId()
+                });
+            }
+        }
+        table.setModel(model);
     }
 }
