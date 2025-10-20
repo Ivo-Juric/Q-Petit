@@ -1,8 +1,10 @@
 package com.qpetit.controllers;
 
+import java.sql.SQLException;
+
 public interface EventAdministrator {
 
-    void createEvent();
+    //void static createEvent() throws SQLException;
     void updateEvent();
     void deleteEvent();
     void assignEmployee();
