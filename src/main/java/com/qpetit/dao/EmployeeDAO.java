@@ -10,8 +10,8 @@ import java.util.List;
 public class EmployeeDAO {
 
     public void insert(Employee employee) throws SQLException {
-        String sql = "INSERT INTO Staff (DNI, first_name, last_name, email, is_internal, staff_type_ID, availability_ID) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO Staff (DNI, first_name, last_name, email, staff_type_ID, availability_ID) " +
+                "VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -20,9 +20,8 @@ public class EmployeeDAO {
             stmt.setString(2, employee.getFirstName());
             stmt.setString(3, employee.getLastName());
             stmt.setString(4, employee.getEmail());
-            stmt.setBoolean(5, employee.isInteral());
-            stmt.setInt(6, getStaffTypeIdBySpecialty(conn, employee.getSpecialties()));
-            stmt.setInt(7, employee.getAvailability());
+            stmt.setInt(5, getStaffTypeIdBySpecialty(conn, employee.getSpecialties()));
+            stmt.setInt(6, employee.getAvailability());
 
             stmt.executeUpdate();
         }
@@ -31,11 +30,11 @@ public class EmployeeDAO {
     public List<Employee> getAll() throws SQLException {
         List<Employee> employees = new ArrayList<>();
         String sql = """
-                SELECT s.DNI, s.first_name, s.last_name, s.email, s.is_internal,
+                SELECT s.DNI, s.first_name, s.last_name, s.email,
                        st.description AS staff_type,
                        a.availability_ID
                 FROM Staff s
-                LEFT JOIN StaffType st ON s.staff_type_ID = st.type_ID
+                LEFT JOIN StaffTypes st ON s.staff_type_ID = st.type_ID
                 LEFT JOIN Availability a ON s.availability_ID = a.availability_ID
                 """;
 
@@ -54,11 +53,11 @@ public class EmployeeDAO {
     public Employee getById(int id) throws SQLException {
         Employee employee = null;
         String sql = """
-                SELECT s.DNI, s.first_name, s.last_name, s.email, s.is_internal,
+                SELECT s.DNI, s.first_name, s.last_name, s.email,
                        st.description AS staff_type,
                        a.availability_ID
                 FROM Staff s
-                LEFT JOIN StaffType st ON s.staff_type_ID = st.type_ID
+                LEFT JOIN StaffTypes st ON s.staff_type_ID = st.type_ID
                 LEFT JOIN Availability a ON s.availability_ID = a.availability_ID
                 WHERE s.DNI = ?
                 """;
@@ -79,7 +78,7 @@ public class EmployeeDAO {
     }
 
     public void update(Employee employee) throws SQLException {
-        String sql = "UPDATE Staff SET first_name=?, last_name=?, email=?, is_internal=?, staff_type_ID=?, availability_ID=? WHERE DNI=?";
+        String sql = "UPDATE Staff SET first_name=?, last_name=?, email=?, staff_type_ID=?, availability_ID=? WHERE DNI=?";
 
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
@@ -87,10 +86,9 @@ public class EmployeeDAO {
             stmt.setString(1, employee.getFirstName());
             stmt.setString(2, employee.getLastName());
             stmt.setString(3, employee.getEmail());
-            stmt.setBoolean(4, employee.isInteral());
-            stmt.setInt(5, getStaffTypeIdBySpecialty(conn, employee.getSpecialties()));
-            stmt.setInt(6, employee.getAvailability());
-            stmt.setInt(7, employee.getIdEmployee());
+            stmt.setInt(4, getStaffTypeIdBySpecialty(conn, employee.getSpecialties()));
+            stmt.setInt(5, employee.getAvailability());
+            stmt.setInt(6, employee.getIdEmployee());
 
             stmt.executeUpdate();
         }
@@ -112,7 +110,6 @@ public class EmployeeDAO {
         String firstName = rs.getString("first_name");
         String lastName = rs.getString("last_name");
         String email = rs.getString("email");
-        boolean isInternal = rs.getBoolean("is_internal");
         String staffTypeDesc = rs.getString("staff_type");
         int availability = rs.getInt("availability_ID");
 
@@ -121,12 +118,12 @@ public class EmployeeDAO {
                 staffTypeDesc != null ? staffTypeDesc.toUpperCase() : "MANAGER"
         );
 
-        return new Employee(id, firstName, lastName, email, isInternal, specialty, availability);
+        return new Employee(id, firstName, lastName, email, specialty, availability);
     }
 
     // Método auxiliar para obtener el ID del tipo de staff según la especialidad
     private int getStaffTypeIdBySpecialty(Connection conn, Specialties specialty) throws SQLException {
-        String sql = "SELECT type_ID FROM StaffType WHERE UPPER(description) = ?";
+        String sql = "SELECT type_ID FROM StaffTypes WHERE UPPER(description) = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, specialty.name());
             try (ResultSet rs = stmt.executeQuery()) {
@@ -136,7 +133,7 @@ public class EmployeeDAO {
             }
         }
         // Si no existe, lo insertamos
-        String insertSql = "INSERT INTO StaffType (description) VALUES (?) RETURNING type_ID";
+        String insertSql = "INSERT INTO StaffTypes (description) VALUES (?) RETURNING type_ID";
         try (PreparedStatement stmt = conn.prepareStatement(insertSql)) {
             stmt.setString(1, specialty.name());
             try (ResultSet rs = stmt.executeQuery()) {

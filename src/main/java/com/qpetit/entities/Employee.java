@@ -5,17 +5,15 @@ public class Employee {
     private String firstName;
     private String lastName;
     private String email;
-    private boolean isInteral;
     private Specialties specialties; // AGREGAR CUALES SON
     private int availability; // MODIFICAR EN DIAS Y HORARIOS
 
 
-    public Employee (int idEmployee, String firstName, String lastName, String email, boolean isInteral, Specialties specialties, int availability) {
+    public Employee (int idEmployee, String firstName, String lastName, String email, Specialties specialties, int availability) {
         this.idEmployee = idEmployee;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.isInteral = isInteral;
         this.specialties = specialties;
         this.availability = availability;
     }
@@ -58,16 +56,6 @@ public class Employee {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-
-    public boolean isInteral() {
-        return isInteral;
-    }
-
-
-    public void setInteral(boolean isInteral) {
-        this.isInteral = isInteral;
     }
 
 

@@ -11,7 +11,7 @@ public class EventDAO {
     public void insert(Event event) throws SQLException {
         String sql = "INSERT INTO Events " +
                 "(start_date, end_date, guest_count, event_type_id, menu_type_id, supplier_id, " +
-                "service_sheet_link, customer_id, menu_id, status_id " +
+                "service_sheet_link, customer_id, menu_id, status_id) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try (Connection conn = DataBaseConnection.getInstance().getConnection();
              PreparedStatement stmt = conn.prepareStatement(sql)) {
